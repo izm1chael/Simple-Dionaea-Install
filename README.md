@@ -16,5 +16,5 @@ The default dionaea.cfg is also edited in order to reduce the amount of logs the
  - hpfeeds
  - [Cyber Bytes Bistreams Rotation](https://github.com/izm1chael/Dionaea-Bistream-Rotation)
 
-Feel free to request further options
+Feel free to request new or additional features and options by raising an issues and using the feature request tag
 
