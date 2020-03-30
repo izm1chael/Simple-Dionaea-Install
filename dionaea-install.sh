@@ -26,6 +26,7 @@ apt --yes install \
     python3-yaml \
     python3-boto3 
 
+# Clone Dionaea from Github
 git clone https://github.com/DinoTools/dionaea.git 
 cd dionaea
 
@@ -39,8 +40,10 @@ cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/dionaea ..
 make
 make install
 
+
+# Add and configure HPFeeds
 while true; do
-    read -p "Do you want to intergarte MHN / hpfeeds?" yn
+    read -p "Do you want to intergarte MHN / hpfeeds? (Y/N)" yn
     case $yn in
         [Yy]* ) echo -n "Enter your server hostname or IP and press [ENTER]: "
                 read HPF_HOST
@@ -70,8 +73,9 @@ EOF
     esac
 done
 
+# Add and configure Virustotal
 while true; do
-    read -p "Do you want to intergarte VirusTotal (You will need a VirusTotal API Key)?" yn
+    read -p "Do you want to intergarte VirusTotal (You will need a VirusTotal API Key) (Y/N)?" yn
     case $yn in
         [Yy]* ) echo -n "Enter your VirusTotal API Key and press [ENTER]: "
                 read VirusTotal_Key
@@ -90,8 +94,9 @@ EOF
     esac
 done
 
+# Add and Configure Incedent Logs
 while true; do
-    read -p "Do you want to output Dionaea Incedent Log (This is in pre-alpha state)?" yn
+    read -p "Do you want to output Dionaea Incedent Log (This is in pre-alpha state) (Y/N)?" yn
     case $yn in
         [Yy]* ) cat > /opt/dionaea/etc/dionaea/ihandlers-enabled/log_incident.yaml <<EOF
 - name: log_incident
@@ -108,8 +113,10 @@ break;;
     esac
 done
 
+
+#Add and Configure Json Logs
 while true; do
-    read -p "Do you want to output Dionaea to json Log, this can be ingested into ELK and SPLUNK?" yn
+    read -p "Do you want to output Dionaea to json Log, this can be ingested into ELK and SPLUNK? (Y/N)" yn
     case $yn in
         [Yy]* ) cat > /opt/dionaea/etc/dionaea/ihandlers-enabled/log_json.yaml <<EOF
 - name: log_json
@@ -128,8 +135,9 @@ break;;
     esac
 done
 
+# Add Bistreamns Managment
 while true; do
-    read -p "Do you want to implement Bistreams rotation?" yn
+    read -p "Do you want to implement Bistreams rotation?(Y/N)" yn
     case $yn in
         [Yy]* )
             PS3='Select an option and press Enter: '
