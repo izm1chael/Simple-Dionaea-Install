@@ -71,6 +71,26 @@ EOF
 done
 
 while true; do
+    read -p "Do you want to intergarte VirusTotal (You will need a VirusTotal API Key)?" yn
+    case $yn in
+        [Yy]* ) echo -n "Enter your VirusTotal API Key and press [ENTER]: "
+                read VirusTotal_Key
+                cat > /opt/dionaea/etc/dionaea/ihandlers-enabled/virustotal.yaml <<EOF
+- name: virustotal
+  config:
+    # grab it from your virustotal account at My account -> My API Key (https://www.virustotal.com/en/user/<username>/apikey/)
+    apikey: "$VirusTotal_Key"
+    file: "@DIONAEA_STATEDIR@/vtcache.sqlite"
+    comment: "This sample was captured in the wild and uploaded by the dionaea honeypot & Cyber Bytes.\n#honeypot #malware #networkworm #CyberBytes"
+EOF
+                break;;
+
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+while true; do
     read -p "Do you want to output Dionaea Incedent Log (This is in pre-alpha state)?" yn
     case $yn in
         [Yy]* ) cat > /opt/dionaea/etc/dionaea/ihandlers-enabled/log_incident.yaml <<EOF
@@ -145,7 +165,7 @@ while true; do
                         esac
                     done
                 ;;
-        [Nn]* ) ;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
