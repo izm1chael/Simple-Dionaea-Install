@@ -13,6 +13,7 @@ The default dionaea.cfg is also edited in order to reduce the amount of logs the
 
  - log_incident
  - log_json
+ - virustotal
  - hpfeeds
  - [Cyber Bytes Bistreams Rotation](https://github.com/izm1chael/Dionaea-Bistream-Rotation)
 
